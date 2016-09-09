@@ -1,0 +1,17 @@
+---
+title: About
+published: true
+handle: about
+---
+{% extends 'layouts/main' %}
+
+{% block content/main %}
+.row
+  .col-lg-4
+    {% editable_text first_column %}
+    %h2 About Us
+    %p Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum
+    massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui.
+    {% endeditable_text %}
+    <img src="{{ 'car2.jpeg' | theme_image_url|  resize: '350x' }}" alt="Gyeongbokgung" />
+{% endblock %}

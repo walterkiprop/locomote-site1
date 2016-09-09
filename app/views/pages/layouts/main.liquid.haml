@@ -1,0 +1,13 @@
+---
+title: layout
+is_layout: true
+---
+{% extends 'layouts/default' %}
+
+{% block content %}
+
+.container
+  {% block main, short_name: true %}
+
+  {% endblock %}
+{% endblock %}

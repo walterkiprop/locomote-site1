@@ -1,0 +1,13 @@
+---
+title: Home page
+published: true
+handle: home
+---
+{% extends 'layouts/simple' %}
+
+{% block content/main %}
+.row
+  .col-lg-4
+    {% editable_text first_column %}
+    {% endeditable_text %}
+{% endblock %}

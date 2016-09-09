@@ -1,0 +1,183 @@
+have_library: checking for xmlNewDoc() in -lxml2... -------------------- yes
+
+"gcc -o conftest -I/usr/include/x86_64-linux-gnu/ruby-2.3.0 -I/usr/include/ruby-2.3.0/ruby/backward -I/usr/include/ruby-2.3.0 -I. -Wdate-time -D_FORTIFY_SOURCE=2   -g -O2 -fstack-protector-strong -Wformat -Werror=format-security -fPIC -std=c99 conftest.c  -L. -L/usr/lib/x86_64-linux-gnu -L. -Wl,-Bsymbolic-functions -Wl,-z,relro -Wl,-z,now -fstack-protector -rdynamic -Wl,-export-dynamic     -lruby-2.3  -lpthread -lgmp -ldl -lcrypt -lm   -lc"
+checked program was:
+/* begin */
+1: #include "ruby.h"
+2: 
+3: int main(int argc, char **argv)
+4: {
+5:   return 0;
+6: }
+/* end */
+
+"gcc -o conftest -I/usr/include/x86_64-linux-gnu/ruby-2.3.0 -I/usr/include/ruby-2.3.0/ruby/backward -I/usr/include/ruby-2.3.0 -I. -Wdate-time -D_FORTIFY_SOURCE=2   -g -O2 -fstack-protector-strong -Wformat -Werror=format-security -fPIC -std=c99 conftest.c  -L. -L/usr/lib/x86_64-linux-gnu -L. -Wl,-Bsymbolic-functions -Wl,-z,relro -Wl,-z,now -fstack-protector -rdynamic -Wl,-export-dynamic     -lruby-2.3 -lxml2  -lpthread -lgmp -ldl -lcrypt -lm   -lc"
+conftest.c: In function ‘t’:
+conftest.c:13:57: error: ‘xmlNewDoc’ undeclared (first use in this function)
+ int t(void) { void ((*volatile p)()); p = (void ((*)()))xmlNewDoc; return !p; }
+                                                         ^
+conftest.c:13:57: note: each undeclared identifier is reported only once for each function it appears in
+checked program was:
+/* begin */
+ 1: #include "ruby.h"
+ 2: 
+ 3: /*top*/
+ 4: extern int t(void);
+ 5: int main(int argc, char **argv)
+ 6: {
+ 7:   if (argc > 1000000) {
+ 8:     printf("%p", &t);
+ 9:   }
+10: 
+11:   return 0;
+12: }
+13: int t(void) { void ((*volatile p)()); p = (void ((*)()))xmlNewDoc; return !p; }
+/* end */
+
+"gcc -o conftest -I/usr/include/x86_64-linux-gnu/ruby-2.3.0 -I/usr/include/ruby-2.3.0/ruby/backward -I/usr/include/ruby-2.3.0 -I. -Wdate-time -D_FORTIFY_SOURCE=2   -g -O2 -fstack-protector-strong -Wformat -Werror=format-security -fPIC -std=c99 conftest.c  -L. -L/usr/lib/x86_64-linux-gnu -L. -Wl,-Bsymbolic-functions -Wl,-z,relro -Wl,-z,now -fstack-protector -rdynamic -Wl,-export-dynamic     -lruby-2.3 -lxml2  -lpthread -lgmp -ldl -lcrypt -lm   -lc"
+checked program was:
+/* begin */
+ 1: #include "ruby.h"
+ 2: 
+ 3: /*top*/
+ 4: extern int t(void);
+ 5: int main(int argc, char **argv)
+ 6: {
+ 7:   if (argc > 1000000) {
+ 8:     printf("%p", &t);
+ 9:   }
+10: 
+11:   return 0;
+12: }
+13: extern void xmlNewDoc();
+14: int t(void) { xmlNewDoc(); return 0; }
+/* end */
+
+--------------------
+
+| pkg-config --libs libxml-2.0
+=> "-lxml2\n"
+"gcc -o conftest -I/usr/include/x86_64-linux-gnu/ruby-2.3.0 -I/usr/include/ruby-2.3.0/ruby/backward -I/usr/include/ruby-2.3.0 -I. -Wdate-time -D_FORTIFY_SOURCE=2   -g -O2 -fstack-protector-strong -Wformat -Werror=format-security -fPIC -std=c99 conftest.c  -L. -L/usr/lib/x86_64-linux-gnu -L. -Wl,-Bsymbolic-functions -Wl,-z,relro -Wl,-z,now -fstack-protector -rdynamic -Wl,-export-dynamic    -lxml2  -lruby-2.3 -lxml2 -lpthread -lgmp -ldl -lcrypt -lm   -lc"
+checked program was:
+/* begin */
+1: #include "ruby.h"
+2: 
+3: int main(int argc, char **argv)
+4: {
+5:   return 0;
+6: }
+/* end */
+
+| pkg-config --cflags-only-I libxml-2.0
+=> "-I/usr/include/libxml2\n"
+| pkg-config --cflags-only-other libxml-2.0
+=> "\n"
+| pkg-config --libs-only-l libxml-2.0
+=> "-lxml2\n"
+package configuration for libxml-2.0
+cflags: 
+ldflags: 
+libs: -lxml2
+
+find_header: checking for nokogiri.h in /home/walter/Sites/Wagon/car_hire/vendor/bundle/gems/nokogiri-1.6.7.2/ext/nokogiri... -------------------- yes
+
+"gcc -E -I/usr/include/x86_64-linux-gnu/ruby-2.3.0 -I/usr/include/ruby-2.3.0/ruby/backward -I/usr/include/ruby-2.3.0 -I. -I/usr/include/libxml2 -Wdate-time -D_FORTIFY_SOURCE=2   -g -O2 -fstack-protector-strong -Wformat -Werror=format-security -fPIC -std=c99   conftest.c -o conftest.i"
+conftest.c:3:22: fatal error: nokogiri.h: No such file or directory
+compilation terminated.
+checked program was:
+/* begin */
+1: #include "ruby.h"
+2: 
+3: #include <nokogiri.h>
+/* end */
+
+"gcc -E -I/usr/include/x86_64-linux-gnu/ruby-2.3.0 -I/usr/include/ruby-2.3.0/ruby/backward -I/usr/include/ruby-2.3.0 -I. -I/usr/include/libxml2 -Wdate-time -D_FORTIFY_SOURCE=2   -g -O2 -fstack-protector-strong -Wformat -Werror=format-security -fPIC -std=c99  -I/home/walter/Sites/Wagon/car_hire/vendor/bundle/gems/nokogiri-1.6.7.2/ext/nokogiri conftest.c -o conftest.i"
+In file included from conftest.c:3:0:
+/home/walter/Sites/Wagon/car_hire/vendor/bundle/gems/nokogiri-1.6.7.2/ext/nokogiri/nokogiri.h:13:0: warning: "_GNU_SOURCE" redefined
+ #define _GNU_SOURCE
+ ^
+In file included from /usr/include/ruby-2.3.0/ruby/ruby.h:24:0,
+                 from /usr/include/ruby-2.3.0/ruby.h:33,
+                 from conftest.c:1:
+/usr/include/x86_64-linux-gnu/ruby-2.3.0/ruby/config.h:17:0: note: this is the location of the previous definition
+ #define _GNU_SOURCE 1
+ ^
+checked program was:
+/* begin */
+1: #include "ruby.h"
+2: 
+3: #include <nokogiri.h>
+/* end */
+
+--------------------
+
+find_header: checking for nokogiri.h in /home/walter/Sites/Wagon/car_hire/vendor/bundle/gems/nokogiri-1.6.7.2/ext/nokogiri... -------------------- yes
+
+"gcc -E -I/usr/include/x86_64-linux-gnu/ruby-2.3.0 -I/usr/include/ruby-2.3.0/ruby/backward -I/usr/include/ruby-2.3.0 -I. -I/usr/include/libxml2 -I/home/walter/Sites/Wagon/car_hire/vendor/bundle/gems/nokogiri-1.6.7.2/ext/nokogiri -Wdate-time -D_FORTIFY_SOURCE=2   -g -O2 -fstack-protector-strong -Wformat -Werror=format-security -fPIC -std=c99   conftest.c -o conftest.i"
+In file included from conftest.c:3:0:
+/home/walter/Sites/Wagon/car_hire/vendor/bundle/gems/nokogiri-1.6.7.2/ext/nokogiri/nokogiri.h:13:0: warning: "_GNU_SOURCE" redefined
+ #define _GNU_SOURCE
+ ^
+In file included from /usr/include/ruby-2.3.0/ruby/ruby.h:24:0,
+                 from /usr/include/ruby-2.3.0/ruby.h:33,
+                 from conftest.c:1:
+/usr/include/x86_64-linux-gnu/ruby-2.3.0/ruby/config.h:17:0: note: this is the location of the previous definition
+ #define _GNU_SOURCE 1
+ ^
+checked program was:
+/* begin */
+1: #include "ruby.h"
+2: 
+3: #include <nokogiri.h>
+/* end */
+
+--------------------
+
+have_library: checking for gumbo_parse() in -lgumbo... -------------------- no
+
+"gcc -o conftest -I/usr/include/x86_64-linux-gnu/ruby-2.3.0 -I/usr/include/ruby-2.3.0/ruby/backward -I/usr/include/ruby-2.3.0 -I. -I/usr/include/libxml2 -I/home/walter/Sites/Wagon/car_hire/vendor/bundle/gems/nokogiri-1.6.7.2/ext/nokogiri -Wdate-time -D_FORTIFY_SOURCE=2   -g -O2 -fstack-protector-strong -Wformat -Werror=format-security -fPIC -std=c99  -DNGLIB conftest.c  -L. -L/usr/lib/x86_64-linux-gnu -L. -Wl,-Bsymbolic-functions -Wl,-z,relro -Wl,-z,now -fstack-protector -rdynamic -Wl,-export-dynamic     -lxml2  -lxml2 -lruby-2.3 -lgumbo -lxml2  -lxml2 -lpthread -lgmp -ldl -lcrypt -lm   -lc"
+conftest.c: In function ‘t’:
+conftest.c:13:57: error: ‘gumbo_parse’ undeclared (first use in this function)
+ int t(void) { void ((*volatile p)()); p = (void ((*)()))gumbo_parse; return !p; }
+                                                         ^
+conftest.c:13:57: note: each undeclared identifier is reported only once for each function it appears in
+checked program was:
+/* begin */
+ 1: #include "ruby.h"
+ 2: 
+ 3: /*top*/
+ 4: extern int t(void);
+ 5: int main(int argc, char **argv)
+ 6: {
+ 7:   if (argc > 1000000) {
+ 8:     printf("%p", &t);
+ 9:   }
+10: 
+11:   return 0;
+12: }
+13: int t(void) { void ((*volatile p)()); p = (void ((*)()))gumbo_parse; return !p; }
+/* end */
+
+"gcc -o conftest -I/usr/include/x86_64-linux-gnu/ruby-2.3.0 -I/usr/include/ruby-2.3.0/ruby/backward -I/usr/include/ruby-2.3.0 -I. -I/usr/include/libxml2 -I/home/walter/Sites/Wagon/car_hire/vendor/bundle/gems/nokogiri-1.6.7.2/ext/nokogiri -Wdate-time -D_FORTIFY_SOURCE=2   -g -O2 -fstack-protector-strong -Wformat -Werror=format-security -fPIC -std=c99  -DNGLIB conftest.c  -L. -L/usr/lib/x86_64-linux-gnu -L. -Wl,-Bsymbolic-functions -Wl,-z,relro -Wl,-z,now -fstack-protector -rdynamic -Wl,-export-dynamic     -lxml2  -lxml2 -lruby-2.3 -lgumbo -lxml2  -lxml2 -lpthread -lgmp -ldl -lcrypt -lm   -lc"
+/usr/bin/ld: cannot find -lgumbo
+collect2: error: ld returned 1 exit status
+checked program was:
+/* begin */
+ 1: #include "ruby.h"
+ 2: 
+ 3: /*top*/
+ 4: extern int t(void);
+ 5: int main(int argc, char **argv)
+ 6: {
+ 7:   if (argc > 1000000) {
+ 8:     printf("%p", &t);
+ 9:   }
+10: 
+11:   return 0;
+12: }
+13: extern void gumbo_parse();
+14: int t(void) { gumbo_parse(); return 0; }
+/* end */
+
+--------------------
+
